@@ -54,10 +54,13 @@ mqtt.on("connect", _ => {
 
       // subscribe to mqtt topics
       topics2sub.forEach(t => {
-        mqtt.subscribe(t.topic, err => {
+        const topic = t.topic;
+        mqtt.subscribe(topic, err => {
           if (err) {
-            console.log(`error while subscribing to topic ${t.topic}:`, err);
+            console.log(`error while subscribing to topic ${topic}:`, err);
+            return;
           }
+          console.log(`subscribed to ${topic}`);
         });
       });
 
